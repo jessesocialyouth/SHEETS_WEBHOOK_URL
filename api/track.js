@@ -40,7 +40,8 @@ export default async function handler(req) {
 
     // Build the row to log
     const timestamp = new Date().toISOString();
-    const company = ipData.company?.name || org || 'Unknown';
+    const org = ipData.org || '';
+    const company = ipData.company?.name || org || 'Unknown'; 
     const domain = ipData.company?.domain || '';
     const city = ipData.city || '';
     const country = ipData.country || '';
