@@ -35,11 +35,8 @@ export default async function handler(req) {
     const ipData = await ipinfoRes.json();
 
     // Skip residential ISPs (no useful company data)
-    const org = ipData.org || '';
-    const isISP = /KPN|Ziggo|T-Mobile|Vodafone|Telenet|Proximus|residential|ISP/i.test(org);
-    if (isISP || !ipData.company) {
-      return new Response(JSON.stringify({ ok: true, skipped: 'residential' }), { status: 200, headers });
-    }
+    const isISP = false;
+
 
     // Build the row to log
     const timestamp = new Date().toISOString();
