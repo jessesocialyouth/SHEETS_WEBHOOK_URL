@@ -30,15 +30,15 @@ export default async function handler(req) {
     const ipinfoRes = await fetch(`https://ipinfo.io/${ip}?token=${process.env.IPINFO_TOKEN}`);
     const ipData = await ipinfoRes.json();
 
-    const org = ipData.org || '';
+    const org = ipData.org || ipData.as_name || '';
     const isISP = /KPN|Ziggo|T-Mobile|Vodafone|Telenet|Proximus|residential|ISP/i.test(org);
-    if (isISP || !ipData.company) {
+    if (isISP || (!ipData.company && !ipData.as_name)) {
       return new Response(JSON.stringify({ ok: true, skipped: 'residential' }), { status: 200, headers });
     }
 
     const timestamp = new Date().toISOString();
-    const company = ipData.company?.name || org || 'Unknown';
-    const domain = ipData.company?.domain || '';
+    const company = ipData.company?.name || ipData.as_name || org || 'Unknown';
+    const domain = ipData.company?.domain || ipData.as_domain || '';
     const city = ipData.city || '';
     const country = ipData.country || '';
 
