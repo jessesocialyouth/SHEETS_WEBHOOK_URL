@@ -31,8 +31,8 @@ export default async function handler(req) {
     const ipData = await ipinfoRes.json();
 
     const org = ipData.org || ipData.as_name || '';
-    const isISP = /KPN|Ziggo|T-Mobile|Vodafone|Telenet|Proximus|residential|ISP/i.test(org);
-    if (isISP || (!ipData.company && !ipData.as_name)) {
+    const isISP = /KPN|Ziggo|T-Mobile|Vodafone|Telenet|Proximus/i.test(org);
+    if (isISP) {
       return new Response(JSON.stringify({ ok: true, skipped: 'residential' }), { status: 200, headers });
     }
 
