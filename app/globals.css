@@ -9,15 +9,20 @@ body {
 }
 
 .score-input {
-  width: 44px;
+  width: 48px;
   text-align: center;
   background: #1e293b;
   border: 1px solid #334155;
-  border-radius: 6px;
+  border-radius: 8px;
   color: #f1f5f9;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
-  padding: 4px;
+  padding: 6px 2px;
+  /* bigger tap target on mobile */
+  min-height: 44px;
+  -moz-appearance: textfield;
 }
+.score-input::-webkit-outer-spin-button,
+.score-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .score-input:focus { outline: none; border-color: #22c55e; }
 .score-input.filled { border-color: #22c55e; background: #0f2d1a; }

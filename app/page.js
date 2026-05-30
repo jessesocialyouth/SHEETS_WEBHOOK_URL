@@ -187,26 +187,26 @@ export default function Scorrito() {
               </div>
 
               {/* Teams + score inputs */}
-              <div className="flex items-center gap-3">
+              <div className="grid items-center gap-2" style={{ gridTemplateColumns: '1fr auto 1fr' }}>
                 {/* Home */}
-                <div className={`flex items-center gap-1.5 flex-1 ${favHome ? 'font-semibold' : ''}`}>
-                  <span className="text-xl">{h?.flag}</span>
-                  <span className={`text-sm ${favHome ? 'text-white' : 'text-slate-300'}`}>{h?.name}</span>
-                  {favHome && <span className="text-xs text-green-500">▲</span>}
+                <div className={`flex items-center gap-2 ${favHome ? 'font-semibold' : ''}`}>
+                  <span className="text-2xl leading-none">{h?.flag}</span>
+                  <span className={`text-sm leading-tight ${favHome ? 'text-white' : 'text-slate-300'}`}>{h?.name}</span>
+                  {favHome && <span className="text-green-500 text-xs">▲</span>}
                 </div>
 
-                {/* Inputs */}
-                <div className="flex items-center gap-1.5 shrink-0">
+                {/* Inputs — centred, large tap targets */}
+                <div className="flex items-center gap-2 justify-center">
                   <input
-                    type="number" min="0" max="20"
+                    type="number" inputMode="numeric" min="0" max="20"
                     value={p.home ?? ''}
                     onChange={e => set(f.id, 'home', e.target.value)}
                     className={`score-input ${p.home !== undefined ? 'filled' : ''}`}
                     placeholder="–"
                   />
-                  <span className="text-slate-600 text-sm">:</span>
+                  <span className="text-slate-500 font-bold">:</span>
                   <input
-                    type="number" min="0" max="20"
+                    type="number" inputMode="numeric" min="0" max="20"
                     value={p.away ?? ''}
                     onChange={e => set(f.id, 'away', e.target.value)}
                     className={`score-input ${p.away !== undefined ? 'filled' : ''}`}
@@ -215,10 +215,10 @@ export default function Scorrito() {
                 </div>
 
                 {/* Away */}
-                <div className={`flex items-center gap-1.5 flex-1 justify-end ${favAway ? 'font-semibold' : ''}`}>
-                  {favAway && <span className="text-xs text-red-500">▲</span>}
-                  <span className={`text-sm ${favAway ? 'text-white' : 'text-slate-300'}`}>{a?.name}</span>
-                  <span className="text-xl">{a?.flag}</span>
+                <div className={`flex items-center gap-2 justify-end ${favAway ? 'font-semibold' : ''}`}>
+                  {favAway && <span className="text-red-500 text-xs">▲</span>}
+                  <span className={`text-sm leading-tight text-right ${favAway ? 'text-white' : 'text-slate-300'}`}>{a?.name}</span>
+                  <span className="text-2xl leading-none">{a?.flag}</span>
                 </div>
               </div>
 
